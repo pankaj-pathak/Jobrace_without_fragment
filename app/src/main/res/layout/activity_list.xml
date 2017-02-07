@@ -1,0 +1,76 @@
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.pankajpathak.recycler_view_ex.fragments.Jobs_list_fragment">
+    <include
+        layout="@layout/toolbar_layout"
+        android:id="@+id/toolbar"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linear_layout"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:gravity="center_vertical|right"
+        android:layout_below="@id/toolbar"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search Job"
+            android:textColor="#fff"
+            android:textColorHint="#e3e3e3"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/et_search_job"
+            android:maxLines="1"
+            android:inputType="text"
+            />
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/search_icon"
+            android:background="@drawable/button_layout_transparent"
+            android:id="@+id/btn_search_job"
+            />
+        </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_layout"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/linear_layout"
+                >
+
+            </android.support.v7.widget.RecyclerView>
+</LinearLayout>
+    </ScrollView>
+</RelativeLayout>
+    <fragment
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:id="@+id/nevigation_drawer_fragment"
+        android:name="com.example.pankajpathak.recycler_view_ex.fragments.Nevigation_drawer_fragment"
+        tools:layout="@layout/fragment_nevigation_drawer_fragment"
+        />
+</android.support.v4.widget.DrawerLayout>

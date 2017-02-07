@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="#fff">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TableRow
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/error_icon1"
+                />
+            
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/normal_text_size"
+                android:textColor="#f00"
+                android:layout_marginLeft="5dp"
+                android:text="Sorry your Id is not activated?"
+                />
+
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/key_icon"
+                />
+            <EditText
+                android:id="@+id/et_activation_key"
+                android:hint="Enter Activation Key"
+                android:textColorHint="#c3c3c3"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+
+                />
+        </TableRow>
+        <TableRow
+            android:gravity="center_vertical|left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/tv_show_wrong_key"
+                android:textColor="#f00"
+                android:layout_width="300dp"
+                android:layout_span="2"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:layout_marginLeft="35dp"
+
+
+                />
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|right"
+        android:layout_marginTop="30dp"
+        >
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textColor="#f00"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/button_layout_transparent"
+            />
+
+        <Button
+            android:id="@+id/btn_activate"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Activate"
+            android:textColor="#000"
+            android:background="@drawable/button_layout_transparent"
+            />
+    </LinearLayout>
+
+</LinearLayout>

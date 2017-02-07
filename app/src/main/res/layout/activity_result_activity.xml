@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_result_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.pankaj.jobrace_without_fragment.Result_activity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Result:"
+            android:textSize="@dimen/extra_large_text_size"
+            android:gravity="center"
+            android:textColor="#1B5E20"/>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:layout_gravity="right|center_vertical">
+            <TableRow>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="Correct Answer:"
+                    android:textColor="#1B5E20"/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_correct_answer"
+                    />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="Incorrect Answer:"
+                    android:textColor="#1B5E20"/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_incorrect_answer"
+                    />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="Unattempted Questions:"
+                    android:textColor="#1B5E20"/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_questions_not_attempted"
+                    />
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

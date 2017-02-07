@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/extra_large_text_size"
+        android:id="@+id/tv_technology"
+        android:background="@drawable/edit_text_customize"
+        />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Interview will contain total 50 questions.There will be 3 levels of questions.\n
+        To clear this test you need to get more then 70% in each level.\n
+        To enter in third level you need to clear second level with more then 70%. \n
+        You can only apply for one test per day.\n
+        Press start Button to start the Virtual Interview." />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:textSize="@dimen/extra_large_text_size"
+        android:textColor="#fff"
+        android:id="@+id/btn_start_test"
+        android:background="@drawable/button_layout"
+        android:layout_marginTop="20dp"
+        />
+</LinearLayout>

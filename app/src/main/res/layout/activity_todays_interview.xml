@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.example.pankaj.jobrace_without_fragment.Todays_interview">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:id="@+id/linear_layout"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:gravity="center_vertical|right"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Search Job"
+                android:textColor="#fff"
+                android:textColorHint="#e3e3e3"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/et_search_job"
+                android:maxLines="1"
+                android:inputType="text"
+                />
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/search_icon"
+                android:background="@drawable/button_layout_transparent"
+                android:id="@+id/btn_search_job"
+                />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rec_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>

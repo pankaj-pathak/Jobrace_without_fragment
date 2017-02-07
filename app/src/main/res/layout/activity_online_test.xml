@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_test_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@drawable/layout_upper_border_for_skill_test"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight=".66"
+            android:textColor="@color/colorPrimary"
+            android:text="0/0"
+            android:id="@+id/tv_question_no"
+            android:padding="5dp"
+            android:gravity="center"
+            android:textSize="@dimen/extra_large_text_size"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".33"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:textColor="@color/colorPrimary"
+                android:text="55"
+                android:gravity="center"
+                android:id="@+id/tv_timer"
+                android:padding="5dp"
+                android:textSize="@dimen/extra_large_text_size"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:foregroundGravity="right"
+                android:id="@+id/iv_reload_question"
+                android:src="@drawable/reload_button_with_actions"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+<!--
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:id="@+id/scroll_view"
+        android:layout_marginTop="10dp"
+
+        >
+        -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:id="@+id/et_question_answer"
+                android:text=""
+                android:gravity="start"
+                android:padding="5dp"
+                android:background="#fff"
+                android:layout_marginTop="10dp"
+
+                />
+<!--
+</ScrollView>
+-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:textColor="@color/colorPrimary"
+        android:text="12345"
+        android:id="@+id/tv_question_id"
+        android:padding="5dp"
+        android:gravity="center"
+        android:textSize="@dimen/extra_large_text_size"
+        />
+
+    <Button
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:background="@drawable/button_layout"
+        android:id="@+id/btn_save"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="bottom"
+        android:text="SUBMIT"/>
+
+</LinearLayout>
