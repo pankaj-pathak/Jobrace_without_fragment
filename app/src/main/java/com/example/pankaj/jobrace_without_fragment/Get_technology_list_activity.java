@@ -81,7 +81,7 @@ public class Get_technology_list_activity extends AppCompatActivity {
         list_technology_complete=new ArrayList<>();
         list_technology_type=new ArrayList<>();
         getTechnology();
-        ada=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list_technology_show);
+        ada=new ArrayAdapter<String>(this,R.layout.spinner_item_layout,list_technology_show);
         spinner_technology.setAdapter(ada);
     }
 

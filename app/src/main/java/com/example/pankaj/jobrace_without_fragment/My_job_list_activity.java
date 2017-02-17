@@ -127,7 +127,7 @@ public class My_job_list_activity extends AppCompatActivity {
             try {
                 JSONObject obj = ar.getJSONObject(i);
                 Job_details_data jd = new Job_details_data();
-                jd.setJobid(obj.getString("id"));
+                jd.setJobid(obj.getString("Id"));
                 jd.setJob_title(obj.getString("JobTitle"));
                 jd.setJob_description(obj.getString("JobDescription"));
                 jd.setSalary_offer_min(obj.getString("SalaryOfferedMin"));

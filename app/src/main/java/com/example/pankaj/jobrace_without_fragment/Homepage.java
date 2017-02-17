@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -179,7 +180,6 @@ public class Homepage extends AppCompatActivity {
     */
     public boolean check_Currently_Logged_In()
     {
-
         boolean result=false;
         Shared_preference_data_class sp=new Shared_preference_data_class(Homepage.this);
         if(sp.getUserEmail().trim().equals("") || sp.getUserPassword().trim().equals("") || (!sp.getIsAutologin() && isLoggegIn==0))
@@ -189,17 +189,10 @@ public class Homepage extends AppCompatActivity {
             startActivity(it);
             finish();
         }
-        else if(sp.getUserName().trim().equals(""))
-        {
-            getUrl();
-            ///getCurrentUserDetail();
-            //Shared_preference_data_class sp=new Shared_preference_data_class(Homepage.this);
-            getStudentData(sp.getUserEmail(),sp.getUserPassword());
-            result= true;
-        }
         else
         {
             getUrl();
+            getStudentData(sp.getUserEmail(),sp.getUserPassword());
             result= true;
         }
         return  result;
@@ -215,6 +208,7 @@ public class Homepage extends AppCompatActivity {
                     .addConverterFactory(new ToStringConverterFactory())
                     .build();
             Shared_preference_data_class sp=new Shared_preference_data_class(Homepage.this);
+            Log.d("data======","urlllllllllllll"+sp.getUrl());
             Custom_interface_test custom_interface_test=retrofit.create(Custom_interface_test.class);
             Call<String> call=custom_interface_test.getUrl();
             pd.show();
@@ -331,10 +325,11 @@ public class Homepage extends AppCompatActivity {
                                 sp.setExperience(obj.getString("Experience"));
                                 sp.setUserName(obj.getString("FullName"));
                                 sp.setContactNo(obj.getString("ContactNo"));
+                                sp.setPremiumEndDate(obj.getString("PremiumEndtDate"));
+                                String s=obj.getString("TotalInterviews");
+                                try {sp.setTotalInterviews(Integer.parseInt(s.trim()));}catch(Exception e){sp.setTotalInterviews(0);}
                                 String ct=obj.getString("CardType");
-
                                 sp.setCardType(ct);
-
                                 sp.commitChanges();
                             }
                             else if(result.equals("fail"))
@@ -434,6 +429,7 @@ public class Homepage extends AppCompatActivity {
         {
             drawerLayout.closeDrawers();
             Intent it=new Intent(this,Get_technology_list_activity.class);
+            //Intent it=new Intent(this,Result_activity.class);
             startActivity(it);
         }
 
@@ -455,12 +451,13 @@ public class Homepage extends AppCompatActivity {
             Intent it=new Intent(this,Todays_interview.class);
             startActivity(it);
         }
+        /*
         else if(value.trim().equals("My Resume"))
         {
             drawerLayout.closeDrawers();
             Intent it=new Intent(this,Resume_builder_activity.class);
             startActivity(it);
-        }
+        }*/
         else
         {
             custom_dialog_for_message=new Custom_dialog_for_message(Homepage.this,"You are not subscribed for this service.Upgrade your card to get benifit of this service.");
@@ -549,6 +546,7 @@ public class Homepage extends AppCompatActivity {
     }
     public void getJobs(String technologies)
     {
+        Log.d("url=====","url=========="+new Shared_preference_data_class(this).getUrl());
         if(!Check_connectivity.is_connected(this))
         {
             return;
@@ -612,7 +610,7 @@ public class Homepage extends AppCompatActivity {
                 ImageView iv;
                 JSONObject obj=ar.getJSONObject(i);
                 Job_details_data jd=new Job_details_data();
-                jd.setJobid(obj.getString("id"));
+                jd.setJobid(obj.getString("Id"));
                 jd.setJob_title(obj.getString("JobTitle"));
                 jd.setJob_description(obj.getString("JobDescription"));
                 jd.setSalary_offer_min(obj.getString("SalaryOfferedMin"));

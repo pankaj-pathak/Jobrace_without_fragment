@@ -105,7 +105,7 @@ public class Shared_preference_data_class
 
     public String getUrl()
     {
-        return sp.getString("url","http://jobrace.grid.net.in/jobraceapi/");
+        return sp.getString("url","http://jobrace.in/jobraceapi/");
     }
     public void setUrl(String value)
     {
@@ -129,8 +129,22 @@ public class Shared_preference_data_class
     {
         edit.putString("ContactNo",value);
     }
-
-
+    public int getTotalInterviews()
+    {
+        return sp.getInt("TotalInterviews",0);
+    }
+    public void setTotalInterviews(int value)
+    {
+        edit.putInt("TotalInterviews",value);
+    }
+    public String getPremiumEndDate()
+    {
+        return sp.getString("PremiumEndDate","");
+    }
+    public void setPremiumEndDate(String value)
+    {
+        edit.putString("PremiumEndDate",value);
+    }
     public void commitChanges()
     {
         edit.commit();

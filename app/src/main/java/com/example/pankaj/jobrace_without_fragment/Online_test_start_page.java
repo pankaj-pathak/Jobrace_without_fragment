@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -48,7 +50,11 @@ public class Online_test_start_page extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         btn_start_test= (Button) findViewById(R.id.btn_start_test);
-        ((TextView)findViewById(R.id.tv_technology)).setText(technology_name+" Questions");
+
+
+        ((TextView)findViewById(R.id.tv_technology)).setText(Html.fromHtml("<font color='red'>"+
+                technology_name
+                +"</font>")+" Questions");
         btn_start_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +84,8 @@ public class Online_test_start_page extends AppCompatActivity {
 
     public void getQuestionsId()
     {
+        String urll=new Shared_preference_data_class(this).getUrl();
+        Log.d("data======","url============"+urll+"OnebyonequestionsNew.php");
         if(!Check_connectivity.is_connected(this))
             return;
         Retrofit retrofit=new Retrofit.Builder()
@@ -93,6 +101,7 @@ public class Online_test_start_page extends AppCompatActivity {
                     try {
                         list_questions_id.clear();
                         JSONArray ar = new JSONArray(response.body());
+                        Log.d("data from server===","data==="+ar);
                         String result=ar.getString(0);
                         if(result!=null && result.equals("sucess"))
                         {
@@ -111,6 +120,7 @@ public class Online_test_start_page extends AppCompatActivity {
                         else if(result.equals("fail"))
                         {
                             Toast.makeText(Online_test_start_page.this,"No questions available",Toast.LENGTH_LONG).show();
+                            Log.d("no data===","no data availableeeeeeeee");
                             notSufficientQuestions();
                         }
                         else if(result.equals("Access Denied"))

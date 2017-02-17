@@ -69,6 +69,10 @@ public class Check_credentials
             Toast.makeText(activity, "You can apply for only one test every today.", Toast.LENGTH_LONG).show();
             return false;
         }
+        else if(sp.getPremiumEndDate().compareTo(new StringBuffer(today).reverse().toString())<=0) {
+            Toast.makeText(activity, "You card validity is expired. Please recharge your card.", Toast.LENGTH_LONG).show();
+            return false;
+        }
         return true;
     }
 

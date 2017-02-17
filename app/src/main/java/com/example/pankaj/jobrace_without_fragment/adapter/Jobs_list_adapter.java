@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pankaj.jobrace_without_fragment.R;
@@ -14,6 +15,7 @@ import com.example.pankaj.jobrace_without_fragment.View_job_details_activity;
 import com.example.pankaj.jobrace_without_fragment.data_classes.Check_credentials;
 import com.example.pankaj.jobrace_without_fragment.data_classes.Job_details_data;
 import com.example.pankaj.jobrace_without_fragment.data_classes.Shared_preference_data_class;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -27,12 +29,12 @@ public class Jobs_list_adapter extends RecyclerView.Adapter<Jobs_list_adapter.Cu
 
     List<Job_details_data> list_of_jobs;
     LayoutInflater inflater;
-    Context context;
-    public Jobs_list_adapter(List<Job_details_data> list_of_jobs, Context context)
+    Activity activity;
+    public Jobs_list_adapter(List<Job_details_data> list_of_jobs, Activity activity)
     {
-        this.context=context;
+        this.activity=activity;
         this.list_of_jobs=list_of_jobs;
-        this.inflater=LayoutInflater.from(context);
+        this.inflater=LayoutInflater.from(activity);
     }
 
     @Override
@@ -49,17 +51,19 @@ public class Jobs_list_adapter extends RecyclerView.Adapter<Jobs_list_adapter.Cu
         holder.tv_experience_required.setText(jd.getExp_req_min()+"-"+jd.getExp_req_max());
         holder.tv_interview_location.setText(jd.getInterview_location());
         holder.tv_job_eligibility.setText(jd.getJob_eligibility());
+        holder.tv_job_skills.setText(jd.getSkills().replaceAll("[=0-9]","").replaceAll("[,]",", "));
+
         holder.v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                if(Check_credentials.isEligibleToViewJob((Activity)context))
+                if(Check_credentials.isEligibleToViewJob(activity))
                 {
 
-                    Intent it = new Intent(context, View_job_details_activity.class);
+                    Intent it = new Intent(activity, View_job_details_activity.class);
                     View_job_details_activity.jd = jd;
-                    context.startActivity(it);
-                    Shared_preference_data_class sp=new Shared_preference_data_class((Activity)context);
+                    activity.startActivity(it);
+                    Shared_preference_data_class sp=new Shared_preference_data_class(activity);
                     sp.initializeEditor();
                     sp.setNoOfJobsOpened(Integer.parseInt(sp.getNoOfJobsOpened())+1+"");
                     sp.commitChanges();
@@ -82,6 +86,8 @@ public class Jobs_list_adapter extends RecyclerView.Adapter<Jobs_list_adapter.Cu
         TextView tv_experience_required;
         TextView tv_interview_location;
         TextView tv_job_eligibility;
+        TextView tv_job_skills;
+        ImageView iv_company_logo;
         View v=null;
         public Custom_view_holder(View v)
         {
@@ -90,6 +96,8 @@ public class Jobs_list_adapter extends RecyclerView.Adapter<Jobs_list_adapter.Cu
             tv_experience_required= (TextView) v.findViewById(R.id.tv_experience_required);
             tv_interview_location= (TextView) v.findViewById(R.id.tv_interview_location);
             tv_job_eligibility= (TextView) v.findViewById(R.id.tv_job_eligibility);
+            tv_job_skills= (TextView) v.findViewById(R.id.tv_job_skills);
+            iv_company_logo= (ImageView) v.findViewById(R.id.iv_company_logo);
             this.v=v;
         }
 

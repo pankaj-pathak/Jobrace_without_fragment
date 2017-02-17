@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -42,6 +43,8 @@ public class Online_test extends AppCompatActivity {
     TextView tv_question_id;
     ImageView iv_reload_question;
     String question = "";
+    boolean remove_spaces=true;
+    String question_after_removing_space;
     int time = 0;
     //ScrollView scrollView;
     TextView tv_timer;
@@ -74,11 +77,50 @@ public class Online_test extends AppCompatActivity {
         et_question_answer = (EditText) findViewById(R.id.et_question_answer);
         btn_save = (Button) findViewById(R.id.btn_save);
         iv_reload_question= (ImageView) findViewById(R.id.iv_reload_question);
-        //tv_question = (TextView) findViewById(R.id.tv_question);
-        et_question_answer = (EditText) findViewById(R.id.et_question_answer);
         tv_question_no = (TextView) findViewById(R.id.tv_question_no);
         tv_question_id = (TextView) findViewById(R.id.tv_question_id);
-       /*
+        et_question_answer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String temp_string=et_question_answer.getText().toString();
+                StringBuffer sb=new StringBuffer(temp_string);
+                int k=temp_string.indexOf("___");
+                if(k>=0){
+                    while(k!=sb.length() && sb.charAt(k)=='_')
+                    {
+                        sb.replace(k,k+1," ");
+                        k++;
+                    }
+                    et_question_answer.setText(sb.toString());
+                    et_question_answer.setSelection(k);
+                }
+            }
+        });
+        /*
+        et_question_answer.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if(b)
+                {
+                    StringBuffer sb=new StringBuffer(question);
+                    int k=question.indexOf("___");
+                    if(k>=0)
+                    while(k!=question.length() && question.charAt(k)=='_')
+                    {
+                           sb=sb.replace(k,k+1,"");
+                        Log.d("sb========","sb=================="+sb);
+                    }
+                    et_question_answer.setText(sb);
+                }
+                if(!b && question_after_removing_space!=null && question_after_removing_space.equalsIgnoreCase(et_question_answer.getText().toString()))
+                {
+                    et_question_answer.setText(question);
+                }
+
+            }
+        });
+        */
+        /*
         scrollView = (ScrollView) findViewById(R.id.scroll_view);
         scrollView.setHorizontalScrollBarEnabled(false);
         scrollView.setVerticalScrollBarEnabled(false);
@@ -149,6 +191,9 @@ public class Online_test extends AppCompatActivity {
             else{
                 sendAnswer(retrofit);
                 Intent it = new Intent(Online_test.this, Result_activity.class);
+                Bundle bd=new Bundle();
+                bd.putInt("question_size",list_questions_id.size());
+                it.putExtras(bd);
                 startActivity(it);
                 finish();
             }
@@ -156,6 +201,7 @@ public class Online_test extends AppCompatActivity {
         } else {
             sendAnswer(retrofit);
             getQuestion();
+            btn_save.setEnabled(true);
             return;
         }
     }
@@ -168,7 +214,7 @@ public class Online_test extends AppCompatActivity {
         String contactNo=sp.getContactNo();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(new Shared_preference_data_class(Online_test.this).getUrl())
-                .addConverterFactory(new ToStringConverterFactory())//.addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(new ToStringConverterFactory())
                 .build();
         Custom_interface_test custom_interface_test=retrofit.create(Custom_interface_test.class);
         Call<String> call=custom_interface_test.sendMailToEmployer(name,email,contactNo,technology,employer_email,job_id,1,list_questions_id.size());
@@ -184,11 +230,13 @@ public class Online_test extends AppCompatActivity {
                         {
                             Toast.makeText(Online_test.this,ar.getJSONObject(1).getString("message"),Toast.LENGTH_LONG).show();
                         }
+                        /*
                         else if(result.equals("fail"))
                             //Toast.makeText(Online_test.this,"Some error occured in send answer.",Toast.LENGTH_LONG).show();
                             ;
                         else if(result.equals("Access Denied"))
                             Toast.makeText(Online_test.this,"Access Denied.",Toast.LENGTH_LONG).show();
+                        */
                     }
                     catch (JSONException e)
                     {
@@ -197,6 +245,7 @@ public class Online_test extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(Online_test.this, "Unable to connect with server", Toast.LENGTH_LONG).show();
+                    btn_save.setEnabled(true);
                 }
 
             }
@@ -302,6 +351,7 @@ public class Online_test extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(Online_test.this, "Unable to connect with server", Toast.LENGTH_LONG).show();
+                    btn_save.setEnabled(true);
                 }
 
             }
@@ -309,6 +359,7 @@ public class Online_test extends AppCompatActivity {
             @Override
             public void onFailure(Throwable t) {
                 t.printStackTrace();
+                btn_save.setEnabled(true);
             }
         });
 
@@ -337,19 +388,19 @@ public class Online_test extends AppCompatActivity {
                         {
 
                         }
-                        else if(result.equals("fail"))
+                        else
                             //Toast.makeText(Online_test.this,"Some error occured in send answer.",Toast.LENGTH_LONG).show();
-                        ;
-                        else if(result.equals("Access Denied"))
-                            Toast.makeText(Online_test.this,"Access Denied.",Toast.LENGTH_LONG).show();
+                            btn_save.setEnabled(true);
                     }
                     catch (JSONException e)
                     {
                         e.printStackTrace();
+                        btn_save.setEnabled(true);
                     }
                 }
                 else {
                     Toast.makeText(Online_test.this, "Unable to connect with server", Toast.LENGTH_LONG).show();
+                    btn_save.setEnabled(true);
                 }
 
             }
@@ -357,7 +408,8 @@ public class Online_test extends AppCompatActivity {
             @Override
             public void onFailure(Throwable t) {
                 t.printStackTrace();
-                Toast.makeText(Online_test.this,"Some error occured.",Toast.LENGTH_LONG).show();
+                Toast.makeText(Online_test.this,"Some error occurred.",Toast.LENGTH_LONG).show();
+                btn_save.setEnabled(true);
             }
         });
     }

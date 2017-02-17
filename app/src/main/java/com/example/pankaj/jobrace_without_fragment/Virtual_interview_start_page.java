@@ -174,7 +174,7 @@ public class Virtual_interview_start_page extends AppCompatActivity {
                             finish();
                         }
                         else if(result.equals("fail"))
-                            Toast.makeText(Virtual_interview_start_page.this,"Some error occured... fail",Toast.LENGTH_LONG).show();
+                            Toast.makeText(Virtual_interview_start_page.this,"Some error occured...",Toast.LENGTH_LONG).show();
                         else if(result.equals("Access Denied"))
                             Toast.makeText(Virtual_interview_start_page.this,"Access Denied.",Toast.LENGTH_LONG).show();
                     } catch (JSONException e) {

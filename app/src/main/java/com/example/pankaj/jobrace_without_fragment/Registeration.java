@@ -72,7 +72,7 @@ public class Registeration extends AppCompatActivity {
         getSupportActionBar().setTitle("Registeration");
         list_technology=new ArrayList<>();
         getTechnology();
-        ada_technology=new ArrayAdapter<String>(this,R.layout.spinner_layout,list_technology);
+        ada_technology=new ArrayAdapter<String>(this,R.layout.spinner_item_layout,list_technology);
         spinner_technology.setAdapter(ada_technology);
 
         list_month=new ArrayList<>();

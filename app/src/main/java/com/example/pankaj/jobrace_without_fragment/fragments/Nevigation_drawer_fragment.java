@@ -1,6 +1,12 @@
 package com.example.pankaj.jobrace_without_fragment.fragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +19,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -43,7 +54,7 @@ public class Nevigation_drawer_fragment extends Fragment
     ActionBarDrawerToggle mActiomBarDrawerToggle;
     Nevigation_drawer_recycler_view_adapter ada;
     //static Activity activity;
-    public Nevigation_drawer_fragment()
+     public Nevigation_drawer_fragment()
     {
 
     }
@@ -80,34 +91,15 @@ public class Nevigation_drawer_fragment extends Fragment
 
 
         List<String> list_options=new ArrayList<>();
-        /*
-        list_options.add("Home");
-        list_options.add("My Job");
-        list_options.add("My Interview");
-        list_options.add("My Resume");
-        list_options.add("My Performance");
-        list_options.add("Interview Questions");
-        list_options.add("Today's Interview");
-        list_options.add("Test My Skills");
-        list_options.add("Settings");
-        List<Integer>list_image_id=new ArrayList<>();
-        list_image_id.add(R.drawable.list_options_icon);
-        list_image_id.add(R.drawable.list_options_icon);
-        list_image_id.add(R.drawable.list_options_icon);
-        list_image_id.add(R.drawable.list_options_icon);
-        list_image_id.add(R.drawable.list_options_icon);
-        list_image_id.add(R.drawable.list_options_icon);
-        list_image_id.add(R.drawable.list_options_icon);
-        list_image_id.add(R.drawable.list_options_icon);
-        list_image_id.add(R.drawable.list_options_icon);
-        */
-        //ada=new Nevigation_drawer_recycler_view_adapter(list_options,list_image_id,getActivity());
         ada=new Nevigation_drawer_recycler_view_adapter(getActivity());
         ada.listener=listener;
         rec_view.setLayoutManager(new LinearLayoutManager(getActivity()));
         rec_view.setAdapter(ada);
         Centeral_class.ada=ada;
-    }
+
+}
+
+
     public void setUp(DrawerLayout drawerLayout, Toolbar toolbar)
     {
         this.mDrawerLayout=drawerLayout;
@@ -186,4 +178,7 @@ public class Nevigation_drawer_fragment extends Fragment
         Log.d("in get menu","in getttttttt menuuuuuuuu---------------------------------------------");
     }
 
+
 }
+
+
