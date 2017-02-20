@@ -58,8 +58,25 @@ public class Online_test extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_online_test);
 
+        if(!Check_connectivity.is_connected(this,false))
+        {
+            setContentView(R.layout.layout_not_connected_with_internet);
+            ((Button)findViewById(R.id.btn_try_again)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(Check_connectivity.is_connected(Online_test.this,false))
+                    {
+                        Intent it=getIntent();
+                        finish();
+                        startActivity(it);
+                    }
+                }
+            });
+            return;
+        }
+
+        setContentView(R.layout.activity_online_test);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         LinearLayout actionBarLayout = (LinearLayout)getLayoutInflater().inflate(R.layout.toolbar_layout, null);
@@ -143,6 +160,8 @@ public class Online_test extends AppCompatActivity {
                     Toast.makeText(Online_test.this, "Please enter answer first..", Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!Check_connectivity.is_connected(Online_test.this))
+                    return;
                 btn_save.setEnabled(false);
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(btn_save.getWindowToken(), 0);
@@ -434,8 +453,11 @@ public class Online_test extends AppCompatActivity {
                 }
                 else
                 {
-                    questionno++;
-                    getQuestion();
+                    if(Check_connectivity.is_connected(Online_test.this)){
+                        questionno++;
+                        getQuestion();
+                    }
+
                 }
                 time--;
 

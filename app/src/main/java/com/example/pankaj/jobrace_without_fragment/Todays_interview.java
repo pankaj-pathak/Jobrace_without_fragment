@@ -2,12 +2,14 @@ package com.example.pankaj.jobrace_without_fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -41,6 +43,23 @@ public class Todays_interview extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(!Check_connectivity.is_connected(this,false))
+        {
+            setContentView(R.layout.layout_not_connected_with_internet);
+            ((Button)findViewById(R.id.btn_try_again)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(Check_connectivity.is_connected(Todays_interview.this,false))
+                    {
+                        Intent it=getIntent();
+                        finish();
+                        startActivity(it);
+                    }
+                }
+            });
+            return;
+        }
         setContentView(R.layout.activity_todays_interview);
         pd = new ProgressDialog(this);
         pd.setMessage("Loading...");
@@ -175,6 +194,7 @@ public class Todays_interview extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        if(pd!=null)
         pd.dismiss();
         super.onDestroy();
 

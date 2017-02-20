@@ -17,14 +17,15 @@
         >
 
         <EditText
-            android:id="@+id/et_name"
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/small_text_size"
             android:maxLines="1"
-            android:hint="Full Name"
+            android:hint="Email"
+            android:enabled="false"
             android:textColorHint="#b3b3b3"
-            android:inputType="text"
+            android:inputType="textWebEmailAddress"
             />
 
     <LinearLayout
@@ -33,23 +34,23 @@
         android:orientation="horizontal"
         >
         <EditText
-            android:id="@+id/et_email"
+            android:id="@+id/et_full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Email"
+            android:layout_weight="3"
+            android:hint="Full Name"
             android:textColorHint="#b3b3b3"
-            android:inputType="textWebEmailAddress"
             android:lines="1"
+            android:inputType="text"
             android:textSize="@dimen/small_text_size"
             />
         <EditText
             android:id="@+id/et_phone"
-            android:layout_weight="1"
+            android:layout_weight="7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/small_text_size"
-            android:hint="9012901267"
+            android:hint="Phone"
             android:maxLines="1"
             android:maxLength="10"
             android:textColorHint="#b3b3b3"
@@ -69,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:maxLines="10"
-            android:hint="Enter summary about you here"
+            android:hint="Enter your profile summary here"
             android:layout_marginBottom="10dp"
             android:textColorHint="#b3b3b3"
             android:textSize="@dimen/small_text_size"

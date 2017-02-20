@@ -39,9 +39,23 @@ public class Virtual_interview_start_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(!Check_connectivity.is_connected(this,false))
+        {
+            setContentView(R.layout.layout_not_connected_with_internet);
+            ((Button)findViewById(R.id.btn_try_again)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(Check_connectivity.is_connected(Virtual_interview_start_page.this,false))
+                    {
+                        Intent it=getIntent();
+                        finish();
+                        startActivity(it);
+                    }
+                }
+            });
+            return;
+        }
         setContentView(R.layout.activity_virtual_interview_start_page);
-
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         LinearLayout actionBarLayout = (LinearLayout)getLayoutInflater().inflate(R.layout.toolbar_layout, null);
@@ -65,6 +79,8 @@ public class Virtual_interview_start_page extends AppCompatActivity {
         btn_start_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!Check_connectivity.is_connected(Virtual_interview_start_page.this))
+                    return;
                 sendVirtualInterviewInfo();
             }
         });

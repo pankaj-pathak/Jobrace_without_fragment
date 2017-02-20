@@ -8,9 +8,10 @@ import android.widget.Toast;
 
 public class Check_connectivity
 {
-	public static boolean is_connected(Activity activity)
+	public static boolean is_connected(Activity activity,boolean... show_toast)
 	{
 
+        String message="Internet connection is not available. Please connect with internet.";
 		NetworkInfo info=null;
 		ConnectivityManager connectivity = (ConnectivityManager) activity.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity != null)
@@ -19,7 +20,9 @@ public class Check_connectivity
             if (info != null && info.isConnectedOrConnecting())
                 return true;
         }
-        Toast.makeText(activity, "You are not connected with internet.....", Toast.LENGTH_LONG).show();
+        //Toast.makeText(activity, "You are not connected to the internet.....", Toast.LENGTH_LONG).show();
+        if(show_toast.length<=0)
+        new Custom_dialog_connect_with_internet(activity,message).show();
         return false;
 
 	}

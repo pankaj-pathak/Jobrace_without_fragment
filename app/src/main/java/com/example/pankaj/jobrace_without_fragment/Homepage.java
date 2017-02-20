@@ -19,11 +19,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -74,10 +76,27 @@ public class Homepage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //STUDENT_DETAIL_URL= new Shared_preference_data_class(this).getUrl()+"/GetcandidateinfoNew";
         pd = new ProgressDialog(this);
         pd.setMessage("Loading...");
         pd.setCancelable(false);
+       if(!Check_connectivity.is_connected(this,false))
+        {
+            setContentView(R.layout.layout_not_connected_with_internet);
+            ((Button)findViewById(R.id.btn_try_again)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(Check_connectivity.is_connected(Homepage.this,false))
+                    {
+                        Intent it=getIntent();
+                        finish();
+                        startActivity(it);
+                    }
+                }
+            });
+            return;
+        }
+
+
         if(check_Currently_Logged_In()) {
             setContentView(R.layout.activity_homepage);
 
@@ -155,29 +174,35 @@ public class Homepage extends AppCompatActivity {
         }
     }
 
-    /*
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        super.onCreateOptionsMenu(menu);
-        menu.add(1,1,1,"Logout");
-        return true;
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean("isReloaded",true);
+        super.onSaveInstanceState(outState);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
-        if(item.getTitle().equals("Logout"))
+    /*
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu)
         {
-            Shared_preference_data_class sp=new Shared_preference_data_class(Homepage.this);
-            sp.initializeEditor();
-            sp.clearAllData();
-            sp.commitChanges();
-            check_Currently_Logged_In();
+            super.onCreateOptionsMenu(menu);
+            menu.add(1,1,1,"Logout");
+            return true;
         }
-        return true;
-    }
-    */
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            super.onOptionsItemSelected(item);
+            if(item.getTitle().equals("Logout"))
+            {
+                Shared_preference_data_class sp=new Shared_preference_data_class(Homepage.this);
+                sp.initializeEditor();
+                sp.clearAllData();
+                sp.commitChanges();
+                check_Currently_Logged_In();
+            }
+            return true;
+        }
+        */
     public boolean check_Currently_Logged_In()
     {
         boolean result=false;
@@ -271,7 +296,7 @@ public class Homepage extends AppCompatActivity {
                         for (int i = 1; i < ar.length(); i++) {
                             try {
                                 JSONObject obj = ar.getJSONObject(i);
-                                list.add(obj.getString("Munulist"));
+                                list.add(obj.getString("Munulist").trim());
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -329,6 +354,14 @@ public class Homepage extends AppCompatActivity {
                                 String s=obj.getString("TotalInterviews");
                                 try {sp.setTotalInterviews(Integer.parseInt(s.trim()));}catch(Exception e){sp.setTotalInterviews(0);}
                                 String ct=obj.getString("CardType");
+                                String imei_no=obj.getString("IMEINumber");
+                                if(!imei_no.equals(((TelephonyManager) getSystemService(TELEPHONY_SERVICE)).getDeviceId()))
+                                {
+                                    sp.setIsAutoLogin(false);
+                                    Intent it=new Intent(Homepage.this,Login.class);
+                                    startActivity(it);
+                                    finish();
+                                }
                                 sp.setCardType(ct);
                                 sp.commitChanges();
                             }
@@ -451,13 +484,13 @@ public class Homepage extends AppCompatActivity {
             Intent it=new Intent(this,Todays_interview.class);
             startActivity(it);
         }
-        /*
+
         else if(value.trim().equals("My Resume"))
         {
             drawerLayout.closeDrawers();
             Intent it=new Intent(this,Resume_builder_activity.class);
             startActivity(it);
-        }*/
+        }
         else
         {
             custom_dialog_for_message=new Custom_dialog_for_message(Homepage.this,"You are not subscribed for this service.Upgrade your card to get benifit of this service.");
@@ -549,6 +582,7 @@ public class Homepage extends AppCompatActivity {
         Log.d("url=====","url=========="+new Shared_preference_data_class(this).getUrl());
         if(!Check_connectivity.is_connected(this))
         {
+            Log.d("not..","notttttttttttttttttttttttttt.....................");
             return;
         }
         list_of_jobs.clear();
@@ -647,6 +681,7 @@ public class Homepage extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+
     }
 }
 

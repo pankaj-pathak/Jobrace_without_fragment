@@ -66,6 +66,8 @@ public class Online_test_start_page extends AppCompatActivity {
                 transaction.replace(R.id.fragment_home_page,online_test_fragment);
                 transaction.commit();
                 */
+                if(!Check_connectivity.is_connected(Online_test_start_page.this))
+                    return;
                 Intent it=new Intent(Online_test_start_page.this, Online_test.class);
                 Bundle bd=new Bundle();
                 bd.putStringArrayList("questions_list",list_questions_id);

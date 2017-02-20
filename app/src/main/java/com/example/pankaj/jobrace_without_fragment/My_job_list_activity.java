@@ -1,6 +1,7 @@
 package com.example.pankaj.jobrace_without_fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -36,6 +39,22 @@ public class My_job_list_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(!Check_connectivity.is_connected(this,false))
+        {
+            setContentView(R.layout.layout_not_connected_with_internet);
+            ((Button)findViewById(R.id.btn_try_again)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(Check_connectivity.is_connected(My_job_list_activity.this,false))
+                    {
+                        Intent it=getIntent();
+                        finish();
+                        startActivity(it);
+                    }
+                }
+            });
+            return;
+        }
         setContentView(R.layout.activity_my_job_list_activity);
 
         /*

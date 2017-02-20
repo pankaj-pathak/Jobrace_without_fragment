@@ -22,6 +22,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Scanner;
+
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -98,6 +100,8 @@ public class View_job_details_activity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                if(!Check_connectivity.is_connected(View_job_details_activity.this))
+                    return;
                 if(Check_credentials.isEligibleToGiveVirtualInterview(View_job_details_activity.this))
                 {
                     getTotalInterviewsGiven();
@@ -148,14 +152,12 @@ public class View_job_details_activity extends AppCompatActivity
                 } else {
                     Toast.makeText(View_job_details_activity.this, "Unable to connect with server.", Toast.LENGTH_LONG).show();
                 }
-
-
             }
 
             @Override
             public void onFailure(Throwable t) {
                 t.printStackTrace();
-                Toast.makeText(View_job_details_activity.this, "Some error occured", Toast.LENGTH_LONG).show();
+                Toast.makeText(View_job_details_activity.this, "Some error occured. Please try again", Toast.LENGTH_LONG).show();
             }
 
             public void startVirtualInterview()

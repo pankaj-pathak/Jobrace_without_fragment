@@ -77,7 +77,8 @@
         <activity
             android:name=".Resume_builder_activity"
             android:label="@string/title_activity_resume_builder_activity"
-            android:theme="@style/AppThemeNew.NoActionBar"></activity>
+            android:parentActivityName=".Homepage"
+            ></activity>
     </application>
 
 </manifest>

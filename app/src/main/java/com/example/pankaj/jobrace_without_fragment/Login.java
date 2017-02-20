@@ -153,10 +153,7 @@ public class Login extends AppCompatActivity
                         sb.append(s1);
                     }
                     data = sb.toString();
-                } else {
-                    Log.d("error============", "errorrrrrrrrrr codeeeeeeeeeeeee=" + resCode);
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -170,19 +167,11 @@ public class Login extends AppCompatActivity
                 if(s!=null && !s.trim().equals(""))
 
                 {
-                    Log.d("s==========s==","ssssssssssss=============="+s);
                     JSONArray ar=new JSONArray(s);
                     JSONObject obj = ar.getJSONObject(0);
                     s = obj.getString("result");
                     if (s != null && s.trim().equals("sucess"))
                     {
-                        //Toast.makeText(getApplicationContext(), "Registered Successfully...", Toast.LENGTH_LONG).show();
-
-                        /*
-                        if(Check_credentials.isActivated(Login.this)) {
-
-                        }
-                        */
                         store_data();
                         Homepage.isLoggegIn=1;
                         Intent it = new Intent(Login.this, Homepage.class);
@@ -232,9 +221,25 @@ public class Login extends AppCompatActivity
                         startActivity(it);
                         finish();
                     }
-                    else if(result != null && result.trim().equals("imei incorrect"))
-                        Toast.makeText(Login.this, "You are already registered in another device...", Toast.LENGTH_LONG).show();
-                    else if(result.equals("fail"))
+                    else if(result != null && result.trim().equals("imei incorrect")) {
+                        //Toast.makeText(Login.this, "You are already registered in another device...", Toast.LENGTH_LONG).show();
+                        Custom_dialog_update_imei.Imeiregistered imeiregistered=new Custom_dialog_update_imei.Imeiregistered() {
+                            @Override
+                            public void status(int n) {
+                                if(n==1)
+                                {
+                                    store_data();
+                                    Homepage.isLoggegIn=1;
+                                    Intent it = new Intent(Login.this, Homepage.class);
+                                    startActivity(it);
+                                    finish();
+                                }
+                            }
+                        };
+                        Custom_dialog_update_imei custom_dialog_update_imei=new Custom_dialog_update_imei(Login.this,et_email.getText().toString(),pd,imeiregistered);
+                        custom_dialog_update_imei.show();
+                    }
+                        else if(result.equals("fail"))
                         Toast.makeText(Login.this,"Username or password is incorrect.",Toast.LENGTH_LONG).show();
                     else if(result.equals("Access Denied"))
                         Toast.makeText(Login.this,"Access Denied.",Toast.LENGTH_LONG).show();

@@ -90,6 +90,18 @@ public interface Custom_interface_test
 
     @FormUrlEncoded
     @Headers("Token:adminjobrace54321")
+    @POST("CreateResume.php")
+    Call<String> updateResume(@Field("FullName") String fullname, @Field("Email") String email, @Field("Phone") String phone, @Field("Summary") String summary, @Field("EducationalDetail") String EducationalDetail, @Field("Certification") String Certification,@Field("Projects") String Projects,@Field("WorkExperience") String WorkExperience,@Field("OtherDetails") String OtherDetails,@Field("PersonalDetails") String PersonalDetails,@Field("IsUpdate") String IsUpdate);
+
+
+    @FormUrlEncoded
+    @Headers("Token:adminjobrace54321")
+    @POST("Get_resume.php")
+    Call<String> getResumeDetail(@Field("Email") String email);
+
+
+    @FormUrlEncoded
+    @Headers("Token:adminjobrace54321")
     @POST("PasswordrstNew.php")
     Call<String> sendOtp(@Field("Email") String email, @Field("otp") String password);
 
@@ -106,6 +118,12 @@ public interface Custom_interface_test
     @Headers("Token:adminjobrace54321")
     @POST("GetcandidateinfoNew.php")
     Call<String> getCandidateInfo(@Field("Email") String email, @Field("Password") String password);
+
+    @FormUrlEncoded
+    @Headers("Token:adminjobrace54321")
+    @POST("Update_candidate_info.php")
+    Call<String> updateCandidateInfo(@Field("Email") String email, @Field("IMEINumber") String imei);
+
 
     @FormUrlEncoded
     @Headers("Token:adminjobrace54321")

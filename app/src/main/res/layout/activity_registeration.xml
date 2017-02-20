@@ -42,13 +42,19 @@
             android:textColor="#b3b3b3"
             android:textSize="14sp"
             />
-        <Spinner
-            android:id="@+id/spinner_technology"
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/button_layout_transparent"
+            >
+        <Spinner
+            android:id="@+id/spinner_technology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             />
+        </android.support.v7.widget.CardView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -93,9 +93,9 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="basic_level">Poor performance you are in First level. Practice more to increase your level.Better luck for next time. </string>
-    <string name="average_level">Average performance you are in Second level. Practice more to increase your level. Better luck for next time. </string>
-    <string name="good_level">Good performance you are in Third level. Practice more to achieve Top level. Good luck for next time. </string>
-    <string name="excellent_level">Excellent performance you are in Top level. Attend interviews with confidence to get the job. Good luck for next time. </string>
+    <string name="basic_level">You are in basic level practice more to clear interview.</string>
+    <string name="average_level">You are in intermediate level practice more to clear interview.</string>
+    <string name="good_level">You are in good level practice more to clear interview.</string>
+    <string name="excellent_level">Congrats you are in Excellent level, you can attend interviews</string>
     <string name="action_settings">Settings</string>
 </resources>

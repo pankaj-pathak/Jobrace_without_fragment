@@ -1,22 +1,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#fff"
-    tools:context="com.example.pankajpathak.recycler_view_ex.fragments.GetProgressReportFragment">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Graph"
-        android:gravity="center"
-        />
-    <com.jjoe64.graphview.GraphView
+    >
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/graph_view"
-        android:title="Graph Title"
-        />
+        android:id="@+id/account_food_scroll"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/client_add_button_layout"
+        android:foregroundGravity="right"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linear_technology"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:scrollbarAlwaysDrawHorizontalTrack="true"
+
+            />
+    </HorizontalScrollView>
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/graph_view"
+            android:title="Graph Title"
+            />
 
 </LinearLayout>
