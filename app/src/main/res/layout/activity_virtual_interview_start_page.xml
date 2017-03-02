@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -16,9 +15,10 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Interview will contain total 50 questions.There will be 3 levels of questions.\n
-        To clear this test you need to get more then 70% in each level.\n
-        To enter in third level you need to clear second level with more then 70%. \n
+        android:text="Interview will contain total 50 questions.\n
+        To clear this test you need to get more then 50% .\n
+        Enter the answer in fill in the blank questions in place of '_______'.\n
+        In some questions you need to correct the syntax in the given program.\n
         You can only apply for one test per day.\n
         Press start Button to start the Virtual Interview." />
 

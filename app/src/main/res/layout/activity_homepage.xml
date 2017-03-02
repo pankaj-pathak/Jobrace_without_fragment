@@ -73,6 +73,7 @@
                 android:id="@+id/et_search_job"
                 android:maxLines="1"
                 android:inputType="text"
+                android:background="@color/colorPrimary"
                 />
             <ImageButton
                 android:layout_width="30dp"
@@ -102,7 +103,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:id="@+id/nevigation_drawer_fragment"
-        android:name="com.example.pankaj.jobrace_without_fragment.fragments.Nevigation_drawer_fragment"
+        android:name="grid.jobrace.admin.jobrace.fragments.Nevigation_drawer_fragment"
         tools:layout="@layout/fragment_nevigation_drawer_fragment"
         />
 </android.support.v4.widget.DrawerLayout>

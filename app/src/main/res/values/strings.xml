@@ -98,4 +98,9 @@
     <string name="good_level">You are in good level practice more to clear interview.</string>
     <string name="excellent_level">Congrats you are in Excellent level, you can attend interviews</string>
     <string name="action_settings">Settings</string>
+    <string name="server_error">Not connected with server please try again later.</string>
+    <string name="online_test_start_page_instruction">Enter the answer in fill in the blank questions in place of \'_______\'.\n
+        In some questions you need to correct the syntax in the given program.\n
+        Press start Button to start the questions.</string>
+    <string name="test_start_button">Start</string>
 </resources>

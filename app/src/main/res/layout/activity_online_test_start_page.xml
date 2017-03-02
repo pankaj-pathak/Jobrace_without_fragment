@@ -1,9 +1,5 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
 <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -21,12 +17,14 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Press start Button to start the questions." />
+        android:text="@string/online_test_start_page_instruction"
+        android:gravity="start"
+        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:text="@string/test_start_button"
         android:textSize="@dimen/extra_large_text_size"
         android:textColor="#fff"
         android:id="@+id/btn_start_test"
@@ -34,4 +32,3 @@
         android:layout_marginTop="20dp"
         />
 </LinearLayout>
-</RelativeLayout>
